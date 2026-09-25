@@ -12,6 +12,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,7 +38,9 @@ fun TodoItem(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            if (item.isDone) Color.LightGray else Color.White
+            if (item.isDone)
+                MaterialTheme.colorScheme.surfaceContainerHigh
+            else MaterialTheme.colorScheme.surfaceContainerHighest
         ),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
@@ -49,7 +52,7 @@ fun TodoItem(
                 checked = item.isDone,
                 onCheckedChange = { onCheckedChange(!item.isDone) },
                 colors = CheckboxDefaults.colors(
-                    checkedColor = Color.Gray,
+                    checkedColor = MaterialTheme.colorScheme.surfaceVariant,
                 )
             )
 
@@ -60,7 +63,8 @@ fun TodoItem(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.weight(1f),
-                color = if (item.isDone) Color.Gray else Color.DarkGray,
+                color = if (item.isDone) MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
+                else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                 textDecoration = if (item.isDone) TextDecoration.LineThrough else TextDecoration.None
             )
 
