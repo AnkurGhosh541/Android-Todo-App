@@ -18,12 +18,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.todoapp.data.local.TaskItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskDeleteDialog(
-    task: TaskItem?,
     onDismiss: () -> Unit,
     onCancel: () -> Unit,
     onDelete: () -> Unit
@@ -35,7 +33,10 @@ fun TaskDeleteDialog(
             modifier = Modifier
                 .wrapContentWidth()
                 .wrapContentHeight(),
-            elevation = CardDefaults.cardElevation(4.dp)
+            elevation = CardDefaults.cardElevation(4.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = Color.White
+            )
         ) {
             Column(modifier = Modifier.padding(24.dp)) {
                 Text(
